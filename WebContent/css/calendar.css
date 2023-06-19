@@ -1,0 +1,44 @@
+main{
+	width:100%;
+}
+
+.calendar{
+	width:80%;
+	margin:0 auto;
+	text-align:center;
+	}
+
+.calendar h1{
+	font-size:32px;
+}
+
+.calendar p a{
+	font-size:18px;
+	display:inline-block;
+	padding:10px 60px 10px 60px;
+}
+
+.calendar table{
+	width:80%;
+	font-size:24px;
+	margin:0 auto;
+	margin-top:50px;
+}
+
+.calendar table tr td{
+	width: 80px;
+	height:80px;
+	padding-top:10px;
+}
+
+.calendar table tr td p{
+	padding-top:5px;
+	font-size:18px;
+}
+
+.today{
+	background-color:silver;
+	border-radius:5px;
+}
+
+
