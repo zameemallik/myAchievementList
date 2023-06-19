@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,6 +36,29 @@ public class Main extends HttpServlet {
 		//セッションスコープに保存
 		session.setAttribute("tweetList", tweetList);
 
+		//カテゴリーリストを作成
+		List<String> catagoriesList = new ArrayList<>();
+		//全ツイートを検証
+		for(Tweet tweet: tweetList) {
+			//ツイートのカテゴリーとカテゴリーリストを比較
+			if(catagoriesList.size() == 0) {
+				catagoriesList.add(tweet.getCatagories());
+			}
+			for(int i=0; i < catagoriesList.size(); i++) {
+				//同じカテゴリーがすでにあったら終了
+				if(tweet.getCatagories().equals(catagoriesList.get(i))) {
+					break;
+				}
+				//最後までなかったらカテゴリーリストにカテゴリーを追加
+				if(i == catagoriesList.size()-1) {
+					catagoriesList.add(tweet.getCatagories());
+				}
+			}
+
+		}
+		//全カテゴリーを追加後、セッションスコープにカテゴリー情報を追加
+		session.setAttribute("catagoriesList", catagoriesList);
+
 		//main.jsp(投稿／一覧画面)にフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
 		dispatcher.forward(request, response);
@@ -45,7 +69,7 @@ public class Main extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//postされた値を取得
-		String title = request.getParameter("title");
+		String catagories = request.getParameter("catagories");
 		String detail = request.getParameter("detail");
 
 		//セッションスコープからUser情報を取得
@@ -55,7 +79,7 @@ public class Main extends HttpServlet {
 		String address = user.getAddress();
 
 		//取得した値でtweetインスタンスを生成
-		Tweet tweet = new Tweet(address, title, detail);
+		Tweet tweet = new Tweet(address, catagories, detail);
 
 		//データベースに保存
 		PostTweetLogic postTweet = new PostTweetLogic();

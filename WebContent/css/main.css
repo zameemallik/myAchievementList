@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#addTweet p{
+	margin-bottom:30px;
+}
+
+#optionCatagory p button{
+	border:none;
+	margin:10px;
+	background-color: silver;
+}
+
+#addTweetbtn {
+	padding:3px 20px 3px 25px;
+	font-size:24px;
+	letter-spacing:.5rem;
+	cursor:pointer;
+}
+
+#did{
+	margin:30px;
+	display:flex;
+	flex-wrap:wrap;
+	width:100%;
+}
+
+
+.did_list{
+	width:33%;
+	padding:15px;
+	box-sizing:border-box;
+}
+
+.did_list h2{
+	font-size:24px;
+	font-weight:500;
+	padding:15px;
+}
+
+.did_list p{
+	padding:5px 0px;
+}
+
+.did_list span{
+	padding-left: 10px;
+	font-size:10px;
+}
